@@ -8,5 +8,16 @@ FROM postman/newman
 COPY postman-collection-dir/Go_REST_API.postman_collection.json /etc/newman
 # COPY my-postman-environment.json /etc/newman
 
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/nonexistent" \
+    --shell "/sbin/nologin" \
+    --no-create-home \
+    --uid 10014 \
+    "choreo"
+# Use the above created unprivileged user
+USER 10014
+
 # Define the command to run when the container starts
 CMD ["run", "/etc/newman/Go_REST_API.postman_collection.json"]
