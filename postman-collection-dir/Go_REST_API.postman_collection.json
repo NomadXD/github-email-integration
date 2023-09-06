@@ -1,167 +1,151 @@
 {
-	"info": {
-		"_postman_id": "b6a045ab-51ac-4f67-ad32-6154dca23011",
-		"name": "Go REST API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "11138974"
-	},
-	"item": [
-		{
-			"name": "Get Book List",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"",
-							"pm.test(\"Response status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"",
-							"pm.test(\"Check if id, title, author, and status fields are present in each book object\", function () {",
-							"    const responseData = pm.response.json();",
-							"",
-							"    pm.expect(responseData).to.be.an('array');",
-							"",
-							"    responseData.forEach(function (book) {",
-							"        pm.expect(book).to.have.property('id');",
-							"        pm.expect(book).to.have.property('title');",
-							"        pm.expect(book).to.have.property('author');",
-							"        pm.expect(book).to.have.property('status');",
-							"    });",
-							"});",
-							"",
-							"",
-							"pm.test(\"The id must be a non-empty string\", function () {",
-							"    const responseData = pm.response.json();",
-							"",
-							"    pm.expect(responseData).to.be.an('array');",
-							"",
-							"    responseData.forEach(function (book) {",
-							"        pm.expect(book.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
-							"    });",
-							"});",
-							"",
-							"",
-							"pm.test(\"Title is a non-empty string\", function () {",
-							"    const responseData = pm.response.json();",
-							"",
-							"    pm.expect(responseData).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Response array should not be empty\");",
-							"",
-							"    responseData.forEach(function (book) {",
-							"        pm.expect(book.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
-							"    });",
-							"});",
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "API-Key",
-						"value": "eyJraWQiOiJnYXRld2F5X2NlcnRpZmljYXRlX2FsaWFzIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI2OTA1Y2VhYS02MDRhLTQyZDUtOTMyOC1mMjliZDUzYzk4MWFAY2FyYm9uLnN1cGVyIiwiaXNzIjoiaHR0cHM6XC9cL3N0cy5jaG9yZW8uZGV2OjQ0M1wvb2F1dGgyXC90b2tlbiIsImtleXR5cGUiOiJQUk9EVUNUSU9OIiwic3Vic2NyaWJlZEFQSXMiOlt7InN1YnNjcmliZXJUZW5hbnREb21haW4iOm51bGwsIm5hbWUiOiJHbyBSRVNUIEFQSSAtIFJlYWRpbmcgTGlzdCIsImNvbnRleHQiOiJcL2IzMTI3ZDFjLTE4MGYtNDY5Ni05YWNhLTkwYmM1MjI0ZDRkOFwva2twalwvZ28tcmVzdC1hcGlcL3JlYWRpbmctbGlzdC05NTBcLzEuMC4wIiwicHVibGlzaGVyIjoiY2hvcmVvX3Byb2RfYXBpbV9hZG1pbiIsInZlcnNpb24iOiIxLjAuMCIsInN1YnNjcmlwdGlvblRpZXIiOm51bGx9XSwiZXhwIjoxNjkzOTk0MTU2LCJ0b2tlbl90eXBlIjoiSW50ZXJuYWxLZXkiLCJpYXQiOjE2OTM5OTM1NTYsImp0aSI6IjIyMzBjMjY4LTRjODEtNGQyMC04YTk0LTk1Njc0YTNlZWM5MCJ9.hrNdCny0Sztphb7Xub2k72_nHDGD9bW6EI8s1BCcv2lPpK5IsQj3J9FBDnVcVZhkeTiz6uEejgUs-rfxzG_hEUeeRZuNoUf_jigV4zKyWK2W70fWcH-mporu9kLmAG4gKbHAFm3qfL1_b3hdpZ-r8dM7IzA5O8VstW4ioKZ7CMtg7vwau57XQmzBuPDNTt7VrxAvg-3zRnqrtlu9Uj6v6f6hLeapYRW0DTZda3MY3wiGkXRd1FFBZIQYknMf-C2KgsJrgNFb4QjphTNcJVK9J2LESqEq4XugCnALMZFtYVTQFOi0NrDd8gRDhltpHE8V0XtS82kksYS9m4DOsXEmE3zpFmgV_nrhYf9eGwlZHjHgJiy2PeKG1jkw_H7n0zrtFsKemxWh4lvbien3Dk5dMBiZ33vUkQy-XRezz0hZ_iTF89zEiWA3I8LNKMEpW0cnQWgJpkAISLmCuUp15jfk7J1OpphEA-6HVxaEjs_ZohEztv3J-dUTrdC6uhvstGwjljCMaT7VobL48_lZk8Dc4d_VCTmaDPBPM02dDJrbe58vmsg37EiBTBJYtyQFNRcRlpxLWfMwdkGVe8Ev3diSK3_wiovvn_enyRGg7yaft4VD1Oeyb0H3i6tYaMrX2nPLTtaZB355RTQ3_Zt_ZgzTeNUMtnFHtckQs_H4B1ZwFF0",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://go-rest-api-3192360657:8080/api/v1/reading-list/1.0.0/books",
-					"protocol": "http",
-					"host": [
-						"go-rest-api-3192360657"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"reading-list",
-						"1.0.0",
-						"books"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add book",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"",
-							"pm.test(\"Response status code is 401\", function () {",
-							"    pm.expect(pm.response.code).to.equal(401);",
-							"});",
-							"",
-							"",
-							"pm.test(\"Verify error_message field is present in the response\", function () {",
-							"    const responseData = pm.response.json();",
-							"",
-							"    pm.expect(responseData.error_message).to.exist;",
-							"});",
-							"",
-							"",
-							"pm.test(\"Verify code field is present in the response\", function () {",
-							"    const responseData = pm.response.json();",
-							"",
-							"    pm.expect(responseData.code).to.exist;",
-							"});",
-							"",
-							"",
-							"pm.test(\"Verify that error_description field is present in the response\", function () {",
-							"    const responseData = pm.response.json();",
-							"",
-							"    pm.expect(responseData).to.be.an('object');",
-							"    pm.expect(responseData.error_description).to.exist;",
-							"});",
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "API-Key",
-						"value": "eyJraWQiOiJnYXRld2F5X2NlcnRpZmljYXRlX2FsaWFzIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI2OTA1Y2VhYS02MDRhLTQyZDUtOTMyOC1mMjliZDUzYzk4MWFAY2FyYm9uLnN1cGVyIiwiaXNzIjoiaHR0cHM6XC9cL3N0cy5jaG9yZW8uZGV2OjQ0M1wvb2F1dGgyXC90b2tlbiIsImtleXR5cGUiOiJQUk9EVUNUSU9OIiwic3Vic2NyaWJlZEFQSXMiOlt7InN1YnNjcmliZXJUZW5hbnREb21haW4iOm51bGwsIm5hbWUiOiJHbyBSRVNUIEFQSSAtIFJlYWRpbmcgTGlzdCIsImNvbnRleHQiOiJcL2IzMTI3ZDFjLTE4MGYtNDY5Ni05YWNhLTkwYmM1MjI0ZDRkOFwva2twalwvZ28tcmVzdC1hcGlcL3JlYWRpbmctbGlzdC05NTBcLzEuMC4wIiwicHVibGlzaGVyIjoiY2hvcmVvX3Byb2RfYXBpbV9hZG1pbiIsInZlcnNpb24iOiIxLjAuMCIsInN1YnNjcmlwdGlvblRpZXIiOm51bGx9XSwiZXhwIjoxNjkzOTkzNTAyLCJ0b2tlbl90eXBlIjoiSW50ZXJuYWxLZXkiLCJpYXQiOjE2OTM5OTI5MDIsImp0aSI6ImFhNDhkOWIzLWI2OWItNGE1Ni1iYmJlLWFkYzQzNzU4NmZkNSJ9.eK9AlMubkEB9VO5TIUVcFMqPk_6CG-shGCv55_rPHIwVjTQ78BFU06PCizidPGfwNGM0dYmohCG7fll9b33TuiYmXU1PrhNbWOiQFprBTvN8yxzoNUGHZS5dbNwo3ZymX1EQQAxYM77peOBH0ZZbhVZM6tUk88LTJBo59pCs3bmEEU3rrxpBEO_Xpgydb2XIgTPJQiVsdRpQG0_2CEidsMYFdoZSgNByWXlpkurkXGMP_GaCfAOWYVM1retJakattmMx0XT6ux35XbyJ_rkuL_QLd11w2fr-jBCoR3KIw9uuUoIYtJQfsSIZ5u8_OZw9cHWzyW5g_Etq3lqWoWg6tg8Tz_FE3Cno-W2TKqq9UPp17Sw1dWAyVNDlIh0ZTh-NpY1VT9ETJb-dvAYsQhvUljFKwNM2Do5xSnq3o1R-KLJASyQGs90zVrME6_6ZBLaFh50G6Iw41i-l-eGa4UtO_z-KJae7sEGRTZ66f4O9MKJDJsMxu18Ti0ps0ySrty2JodY3VzxU5QlaVbj1-A_-hqXUeETwuDixLcS7QLrdvi5utBgximmpyE66xLPfZvC7zTXld0sG_dXOlMWUJe0kSXgzAQn4klRY7T-yog4-IcEP3kdC7tfu-dIpNO--7AqgwOAshTzujbDyMvjW58HWy3eSB6ml3eL0XRs1UShqKAA",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"author\": \"J. R. R. Tolkien\",\n  \"id\": \"b2dca50e-7e7e-411a-a190-2e191b09e1cb\",\n  \"status\": \"reading\",\n  \"title\": \"The Lord of the Rings\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://go-rest-api-3192360657:8080/api/v1/reading-list/1.0.0/books",
-					"protocol": "http",
-					"host": [
-						"go-rest-api-3192360657"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"reading-list",
-						"1.0.0",
-						"books"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "b6a045ab-51ac-4f67-ad32-6154dca23011",
+    "name": "Go REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "11138974"
+  },
+  "item": [
+    {
+      "name": "Get Book List",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "",
+              "pm.test(\"Response status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Check if id, title, author, and status fields are present in each book object\", function () {",
+              "    const responseData = pm.response.json();",
+              "",
+              "    pm.expect(responseData).to.be.an('array');",
+              "",
+              "    responseData.forEach(function (book) {",
+              "        pm.expect(book).to.have.property('id');",
+              "        pm.expect(book).to.have.property('title');",
+              "        pm.expect(book).to.have.property('author');",
+              "        pm.expect(book).to.have.property('status');",
+              "    });",
+              "});",
+              "",
+              "",
+              "pm.test(\"The id must be a non-empty string\", function () {",
+              "    const responseData = pm.response.json();",
+              "",
+              "    pm.expect(responseData).to.be.an('array');",
+              "",
+              "    responseData.forEach(function (book) {",
+              "        pm.expect(book.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+              "    });",
+              "});",
+              "",
+              "",
+              "pm.test(\"Title is a non-empty string\", function () {",
+              "    const responseData = pm.response.json();",
+              "",
+              "    pm.expect(responseData).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Response array should not be empty\");",
+              "",
+              "    responseData.forEach(function (book) {",
+              "        pm.expect(book.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
+              "    });",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "API-Key",
+            "value": "eyJraWQiOiJnYXRld2F5X2NlcnRpZmljYXRlX2FsaWFzIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI2OTA1Y2VhYS02MDRhLTQyZDUtOTMyOC1mMjliZDUzYzk4MWFAY2FyYm9uLnN1cGVyIiwiaXNzIjoiaHR0cHM6XC9cL3N0cy5jaG9yZW8uZGV2OjQ0M1wvb2F1dGgyXC90b2tlbiIsImtleXR5cGUiOiJQUk9EVUNUSU9OIiwic3Vic2NyaWJlZEFQSXMiOlt7InN1YnNjcmliZXJUZW5hbnREb21haW4iOm51bGwsIm5hbWUiOiJHbyBSRVNUIEFQSSAtIFJlYWRpbmcgTGlzdCIsImNvbnRleHQiOiJcL2IzMTI3ZDFjLTE4MGYtNDY5Ni05YWNhLTkwYmM1MjI0ZDRkOFwva2twalwvZ28tcmVzdC1hcGlcL3JlYWRpbmctbGlzdC05NTBcLzEuMC4wIiwicHVibGlzaGVyIjoiY2hvcmVvX3Byb2RfYXBpbV9hZG1pbiIsInZlcnNpb24iOiIxLjAuMCIsInN1YnNjcmlwdGlvblRpZXIiOm51bGx9XSwiZXhwIjoxNjkzOTk0MTU2LCJ0b2tlbl90eXBlIjoiSW50ZXJuYWxLZXkiLCJpYXQiOjE2OTM5OTM1NTYsImp0aSI6IjIyMzBjMjY4LTRjODEtNGQyMC04YTk0LTk1Njc0YTNlZWM5MCJ9.hrNdCny0Sztphb7Xub2k72_nHDGD9bW6EI8s1BCcv2lPpK5IsQj3J9FBDnVcVZhkeTiz6uEejgUs-rfxzG_hEUeeRZuNoUf_jigV4zKyWK2W70fWcH-mporu9kLmAG4gKbHAFm3qfL1_b3hdpZ-r8dM7IzA5O8VstW4ioKZ7CMtg7vwau57XQmzBuPDNTt7VrxAvg-3zRnqrtlu9Uj6v6f6hLeapYRW0DTZda3MY3wiGkXRd1FFBZIQYknMf-C2KgsJrgNFb4QjphTNcJVK9J2LESqEq4XugCnALMZFtYVTQFOi0NrDd8gRDhltpHE8V0XtS82kksYS9m4DOsXEmE3zpFmgV_nrhYf9eGwlZHjHgJiy2PeKG1jkw_H7n0zrtFsKemxWh4lvbien3Dk5dMBiZ33vUkQy-XRezz0hZ_iTF89zEiWA3I8LNKMEpW0cnQWgJpkAISLmCuUp15jfk7J1OpphEA-6HVxaEjs_ZohEztv3J-dUTrdC6uhvstGwjljCMaT7VobL48_lZk8Dc4d_VCTmaDPBPM02dDJrbe58vmsg37EiBTBJYtyQFNRcRlpxLWfMwdkGVe8Ev3diSK3_wiovvn_enyRGg7yaft4VD1Oeyb0H3i6tYaMrX2nPLTtaZB355RTQ3_Zt_ZgzTeNUMtnFHtckQs_H4B1ZwFF0",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://go-rest-api-3192360657:8080/api/v1/reading-list/books",
+          "protocol": "http",
+          "host": ["go-rest-api-3192360657"],
+          "port": "8080",
+          "path": ["api", "v1", "reading-list", "1.0.0", "books"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add book",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "",
+              "pm.test(\"Response status code is 401\", function () {",
+              "    pm.expect(pm.response.code).to.equal(401);",
+              "});",
+              "",
+              "",
+              "pm.test(\"Verify error_message field is present in the response\", function () {",
+              "    const responseData = pm.response.json();",
+              "",
+              "    pm.expect(responseData.error_message).to.exist;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Verify code field is present in the response\", function () {",
+              "    const responseData = pm.response.json();",
+              "",
+              "    pm.expect(responseData.code).to.exist;",
+              "});",
+              "",
+              "",
+              "pm.test(\"Verify that error_description field is present in the response\", function () {",
+              "    const responseData = pm.response.json();",
+              "",
+              "    pm.expect(responseData).to.be.an('object');",
+              "    pm.expect(responseData.error_description).to.exist;",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "API-Key",
+            "value": "eyJraWQiOiJnYXRld2F5X2NlcnRpZmljYXRlX2FsaWFzIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI2OTA1Y2VhYS02MDRhLTQyZDUtOTMyOC1mMjliZDUzYzk4MWFAY2FyYm9uLnN1cGVyIiwiaXNzIjoiaHR0cHM6XC9cL3N0cy5jaG9yZW8uZGV2OjQ0M1wvb2F1dGgyXC90b2tlbiIsImtleXR5cGUiOiJQUk9EVUNUSU9OIiwic3Vic2NyaWJlZEFQSXMiOlt7InN1YnNjcmliZXJUZW5hbnREb21haW4iOm51bGwsIm5hbWUiOiJHbyBSRVNUIEFQSSAtIFJlYWRpbmcgTGlzdCIsImNvbnRleHQiOiJcL2IzMTI3ZDFjLTE4MGYtNDY5Ni05YWNhLTkwYmM1MjI0ZDRkOFwva2twalwvZ28tcmVzdC1hcGlcL3JlYWRpbmctbGlzdC05NTBcLzEuMC4wIiwicHVibGlzaGVyIjoiY2hvcmVvX3Byb2RfYXBpbV9hZG1pbiIsInZlcnNpb24iOiIxLjAuMCIsInN1YnNjcmlwdGlvblRpZXIiOm51bGx9XSwiZXhwIjoxNjkzOTkzNTAyLCJ0b2tlbl90eXBlIjoiSW50ZXJuYWxLZXkiLCJpYXQiOjE2OTM5OTI5MDIsImp0aSI6ImFhNDhkOWIzLWI2OWItNGE1Ni1iYmJlLWFkYzQzNzU4NmZkNSJ9.eK9AlMubkEB9VO5TIUVcFMqPk_6CG-shGCv55_rPHIwVjTQ78BFU06PCizidPGfwNGM0dYmohCG7fll9b33TuiYmXU1PrhNbWOiQFprBTvN8yxzoNUGHZS5dbNwo3ZymX1EQQAxYM77peOBH0ZZbhVZM6tUk88LTJBo59pCs3bmEEU3rrxpBEO_Xpgydb2XIgTPJQiVsdRpQG0_2CEidsMYFdoZSgNByWXlpkurkXGMP_GaCfAOWYVM1retJakattmMx0XT6ux35XbyJ_rkuL_QLd11w2fr-jBCoR3KIw9uuUoIYtJQfsSIZ5u8_OZw9cHWzyW5g_Etq3lqWoWg6tg8Tz_FE3Cno-W2TKqq9UPp17Sw1dWAyVNDlIh0ZTh-NpY1VT9ETJb-dvAYsQhvUljFKwNM2Do5xSnq3o1R-KLJASyQGs90zVrME6_6ZBLaFh50G6Iw41i-l-eGa4UtO_z-KJae7sEGRTZ66f4O9MKJDJsMxu18Ti0ps0ySrty2JodY3VzxU5QlaVbj1-A_-hqXUeETwuDixLcS7QLrdvi5utBgximmpyE66xLPfZvC7zTXld0sG_dXOlMWUJe0kSXgzAQn4klRY7T-yog4-IcEP3kdC7tfu-dIpNO--7AqgwOAshTzujbDyMvjW58HWy3eSB6ml3eL0XRs1UShqKAA",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"author\": \"J. R. R. Tolkien\",\n  \"id\": \"b2dca50e-7e7e-411a-a190-2e191b09e1cb\",\n  \"status\": \"reading\",\n  \"title\": \"The Lord of the Rings\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://go-rest-api-3192360657:8080/api/v1/reading-list/books",
+          "protocol": "http",
+          "host": ["go-rest-api-3192360657"],
+          "port": "8080",
+          "path": ["api", "v1", "reading-list", "1.0.0", "books"]
+        }
+      },
+      "response": []
+    }
+  ]
 }
