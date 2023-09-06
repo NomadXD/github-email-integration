@@ -9,8 +9,6 @@ FROM node:18-alpine
 COPY postman-collection-dir/Go_REST_API.postman_collection.json /etc
 # COPY my-postman-environment.json /etc/newman
 
-RUN ls /etc/new
-
 RUN npm i -g newman -y
 
 RUN adduser \
